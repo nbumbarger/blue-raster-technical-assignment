@@ -1,4 +1,3 @@
-'use strict';
 import MapView from 'esri/views/MapView';
 import EsriMap from 'esri/Map';
 
@@ -23,7 +22,8 @@ export default (state = initialState, action) => {
           zoom: 5
         })
       };
-  }
 
-  return state;
+    default:
+      return state;
+  }
 };

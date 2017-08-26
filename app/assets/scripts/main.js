@@ -1,4 +1,3 @@
-'use strict';
 import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
@@ -6,7 +5,6 @@ import { createLogger } from 'redux-logger';
 import { createStore, applyMiddleware } from 'redux';
 import { HashRouter, Switch, Route } from 'react-router-dom';
 
-import config from './config';
 import reducer from './reducers';
 
 require('../styles/main.scss');
@@ -17,7 +15,7 @@ const logger = createLogger({
   level: 'info',
   collapsed: true,
   predicate: (getState, action) => {
-    return (config.environment !== 'production');
+    return (process.env.NODE_ENV !== 'production');
   }
 });
 
@@ -30,13 +28,15 @@ import Home from './views/home';
 import UhOh from './views/uhoh';
 
 render((
-  <Provider store={store}>
+  <div>
     <Header />
-    <HashRouter>
-      <Switch>
-        <Route exact path='/' component={Home} />
-        <Route component={UhOh} />
-      </Switch>
-    </HashRouter>
-  </Provider>
+    <Provider store={store}>
+      <HashRouter>
+        <Switch>
+          <Route exact path='/' component={Home} />
+          <Route component={UhOh} />
+        </Switch>
+      </HashRouter>
+    </Provider>
+  </div>
 ), document.body.appendChild(document.createElement('main')));
