@@ -5,6 +5,7 @@ import { createLogger } from 'redux-logger';
 import { createStore, applyMiddleware } from 'redux';
 import { HashRouter, Switch, Route } from 'react-router-dom';
 
+import { text } from './constants';
 import reducer from './reducers';
 
 require('../styles/main.scss');
@@ -29,7 +30,7 @@ import UhOh from './views/uhoh';
 
 render((
   <div>
-    <Header />
+    <Header title={text.title} />
     <Provider store={store}>
       <HashRouter>
         <Switch>

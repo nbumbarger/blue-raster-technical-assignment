@@ -1,3 +1,5 @@
 .page__home {
-  background: blue;
+  .map-view {
+    height: calc(100vh - 3rem);
+  }
 }

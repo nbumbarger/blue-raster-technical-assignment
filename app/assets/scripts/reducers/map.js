@@ -2,6 +2,7 @@ import MapView from 'esri/views/MapView';
 import EsriMap from 'esri/Map';
 
 import { CREATE_MAP } from '../actions';
+import { mapDefaults } from '../constants';
 
 export const initialState = {
 
@@ -16,10 +17,10 @@ export default (state = initialState, action) => {
         mapCtrl: new MapView({
           container: action.domNode,
           map: new EsriMap({
-            basemap: 'topo'
+            basemap: mapDefaults.basemap
           }),
-          center: [-98, 37],
-          zoom: 5
+          center: mapDefaults.center,
+          zoom: mapDefaults.zoom
         })
       };
 

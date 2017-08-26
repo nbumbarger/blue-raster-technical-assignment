@@ -1,3 +1,11 @@
 .header {
-  background: red;
+  padding: 1rem;
+  background-color: #4c4c4c;
+  background: linear-gradient(to bottom,  #4c4c4c 0%,#595959 0%,#666666 4%,#474747 13%,#000000 24%,#111111 68%,#1c1c1c 84%,#131313 100%);
+  h1 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: 0.075rem;
+    color: #00ccff;
+  }
 }
