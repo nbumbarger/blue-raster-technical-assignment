@@ -3,7 +3,7 @@ export const text = {
 };
 
 export const mapDefaults = {
-  basemap: 'streets-navigation-vector',
+  basemap: 'dark-gray-vector',
   center: [-77.04, 38.91],
   zoom: 11
 };

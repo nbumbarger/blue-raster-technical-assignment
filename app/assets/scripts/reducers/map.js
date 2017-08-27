@@ -4,7 +4,11 @@ import EsriMap from 'esri/Map';
 import { CREATE_MAP } from '../actions';
 import { mapDefaults } from '../constants';
 
-import { dcBoundary } from '../utils/layers';
+import {
+  dcBoundary,
+  parks,
+  schools,
+  police } from '../utils/layers';
 
 export const initialState = {
 
@@ -20,7 +24,12 @@ export default (state = initialState, action) => {
         container: action.domNode,
         map: new EsriMap({
           basemap: mapDefaults.basemap,
-          layers: [ dcBoundary.layer ]
+          layers: [
+            dcBoundary.layer,
+            parks.layer,
+            schools.layer,
+            police.layer
+          ]
         }),
         center: mapDefaults.center,
         zoom: mapDefaults.zoom
