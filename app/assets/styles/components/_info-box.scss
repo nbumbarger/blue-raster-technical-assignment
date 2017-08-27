@@ -1,19 +1,58 @@
 .info-box {
   position: absolute;
-  bottom: 1.75rem;
+  bottom: 1.5rem;
   left: 1rem;
-  width: 10rem;
-  height: 6rem;
+  min-width: 25rem;
   z-index: 1;
   background-color: #ffffff;
   border: 1px solid #333333;
   h2 {
-    padding: 0.5rem;
+    padding: 0.4rem;
     background-color: #4c4c4c;
     background: linear-gradient(to bottom,  #4c4c4c 0%,#595959 0%,#666666 4%,#474747 13%,#000000 24%,#111111 68%,#1c1c1c 84%,#131313 100%);
     font-size: 0.8rem;
     font-weight: 700;
     letter-spacing: 0.05rem;
-    color: #00ccff;
+    color: #ffffff;
+    line-height: 1.2rem;
+    text-transform: capitalize;
+    &:before {
+      font-family: 'collecticons';
+      font-size: 1rem;
+      margin-right: 0.35rem;
+    }
+    &.schools:before {
+      content: '\ea0D';
+      color: rgba(255, 255, 255, 0.8);
+    }
+    &.parks:before {
+      content: '\ea06';
+      color: rgba(0, 280, 0, 0.9);
+    }
+    &.police:before {
+      content: '\ea09';
+      color: rgba(0, 240, 255, 1);
+    }
+  }
+  table {
+    width: 100%;
+    td, th {
+      padding: 3px 10px;
+    }
+    tbody {
+      border-top: 1px solid white;
+      td {
+        font-size: 0.75rem;
+        color: #00496b;
+        border-left: 1px solid #c9d7db;
+        border-top: 1px solid #c9d7db;
+        &:first-child {
+          font-weight: 900;
+        }
+      }
+      .alt td {
+        background-color: #d8f7ff;
+      }
+    }
   }
 }

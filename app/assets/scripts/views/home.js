@@ -22,9 +22,15 @@ export class Home extends Component {
   }
 
   render () {
+    const { layer, attributes } = this.props.selectedFeature
     return (
       <section className='page__home'>
-        <InfoBox title='example' />
+        {layer
+          ? ( <InfoBox
+                type={layer.id}
+                attributes={attributes}
+              />)
+          : ''}
         <div ref='mapView' className='map-view'></div>
       </section>
     );
@@ -39,7 +45,8 @@ Home.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    mapCtrl: state.map.mapCtrl
+    mapCtrl: state.map.mapCtrl,
+    selectedFeature: state.map.selectedFeature
   };
 };
 

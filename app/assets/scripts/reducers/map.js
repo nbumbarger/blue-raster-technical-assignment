@@ -33,7 +33,6 @@ export default (state = initialState, action) => {
         center: mapDefaults.center,
         zoom: mapDefaults.zoom
       })
-      console.log(typeof mapCtrl)
       set(state, 'mapCtrl', mapCtrl)
       break
 
