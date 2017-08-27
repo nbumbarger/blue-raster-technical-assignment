@@ -1,6 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
+import thunkMiddleware from 'redux-thunk'
 import { createLogger } from 'redux-logger';
 import { createStore, applyMiddleware } from 'redux';
 import { HashRouter, Switch, Route } from 'react-router-dom';
@@ -21,6 +22,7 @@ const logger = createLogger({
 });
 
 const store = createStore(reducer, applyMiddleware(
+  thunkMiddleware,
   logger
 ));
 

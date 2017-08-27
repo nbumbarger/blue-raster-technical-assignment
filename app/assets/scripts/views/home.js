@@ -2,13 +2,18 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import InfoBox from '../components/info-box'
+import InfoBox from '../components/info-box';
+import FilterControl from '../components/filter-control';
 
-import { createMap, updateSelectedFeature } from '../actions';
+import {
+  createMap,
+  populateFilters,
+  updateSelectedFeature } from '../actions';
 
 export class Home extends Component {
   componentDidMount () {
     this.props.dispatch(createMap(this.refs.mapView));
+    this.props.dispatch(populateFilters());
   }
 
   componentWillReceiveProps (nextProps) {
@@ -22,14 +27,15 @@ export class Home extends Component {
   }
 
   render () {
-    const { layer, attributes } = this.props.selectedFeature
+    const { layer, attributes } = this.props.selectedFeature;
+    const filters = this.props.filters;
     return (
       <section className='page__home'>
+      {filters
+        ?  <FilterControl filters={filters} />
+        : ''}
         {layer
-          ? ( <InfoBox
-                type={layer.id}
-                attributes={attributes}
-              />)
+          ? <InfoBox type={layer.id} attributes={attributes} />
           : ''}
         <div ref='mapView' className='map-view'></div>
       </section>
@@ -46,7 +52,8 @@ Home.propTypes = {
 const mapStateToProps = (state) => {
   return {
     mapCtrl: state.map.mapCtrl,
-    selectedFeature: state.map.selectedFeature
+    selectedFeature: state.map.selectedFeature,
+    filters: state.map.filters
   };
 };
 
