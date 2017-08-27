@@ -1,0 +1,19 @@
+.info-box {
+  position: absolute;
+  bottom: 1.75rem;
+  left: 1rem;
+  width: 10rem;
+  height: 6rem;
+  z-index: 1;
+  background-color: #ffffff;
+  border: 1px solid #333333;
+  h2 {
+    padding: 0.5rem;
+    background-color: #4c4c4c;
+    background: linear-gradient(to bottom,  #4c4c4c 0%,#595959 0%,#666666 4%,#474747 13%,#000000 24%,#111111 68%,#1c1c1c 84%,#131313 100%);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.05rem;
+    color: #00ccff;
+  }
+}

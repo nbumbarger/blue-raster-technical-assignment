@@ -2,32 +2,29 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { createMap } from '../actions';
+import InfoBox from '../components/info-box'
 
-const mapStateToProps = (state) => {
-  return {
-    mapCtrl: state.map.mapCtrl
-  };
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    createMap: (domNode) => {
-      dispatch(createMap(domNode));
-    }
-  };
-};
+import { createMap, updateSelectedFeature } from '../actions';
 
 export class Home extends Component {
   componentDidMount () {
-    if (!this.props.mapCtrl) {
-      this.props.createMap(this.refs.mapView);
-    }
+    this.props.dispatch(createMap(this.refs.mapView));
+  }
+
+  componentWillReceiveProps (nextProps) {
+    const { mapCtrl, dispatch } = nextProps;
+    mapCtrl.on('click', (event) => {
+      mapCtrl.hitTest(event)
+      .then((response) => {
+        dispatch(updateSelectedFeature(response.results[0].graphic))
+      })
+    });
   }
 
   render () {
     return (
       <section className='page__home'>
+        <InfoBox title='example' />
         <div ref='mapView' className='map-view'></div>
       </section>
     );
@@ -35,11 +32,15 @@ export class Home extends Component {
 }
 
 Home.propTypes = {
-  createMap: PropTypes.func,
-  mapCtrl: PropTypes.object
+  dispatch: PropTypes.func,
+  mapCtrl: PropTypes.object,
+  selectedFeature: PropTypes.object
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Home);
+const mapStateToProps = (state) => {
+  return {
+    mapCtrl: state.map.mapCtrl
+  };
+};
+
+export default connect(mapStateToProps)(Home);

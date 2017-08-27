@@ -1,24 +1,23 @@
 import MapView from 'esri/views/MapView';
 import EsriMap from 'esri/Map';
+import { set } from 'object-path';
 
-import { CREATE_MAP } from '../actions';
 import { mapDefaults } from '../constants';
+import { dcBoundary, parks, schools, police } from '../utils/layers';
 
 import {
-  dcBoundary,
-  parks,
-  schools,
-  police } from '../utils/layers';
+  CREATE_MAP,
+  UPDATE_SELECTED_FEATURE } from '../actions';
+
 
 export const initialState = {
-
+  selectedFeature: {}
 };
 
 export default (state = initialState, action) => {
   state = Object.assign({}, state);
 
   switch (action.type) {
-
     case CREATE_MAP:
       const mapCtrl = new MapView({
         container: action.domNode,
@@ -34,16 +33,16 @@ export default (state = initialState, action) => {
         center: mapDefaults.center,
         zoom: mapDefaults.zoom
       })
-      mapCtrl.on('click', (event) => {
-        mapCtrl.hitTest(event)
-          .then((response) => response.results[0].graphic)
-          .then((feature) => console.log(feature))
-      });
-      return {
-        mapCtrl
-      };
+      console.log(typeof mapCtrl)
+      set(state, 'mapCtrl', mapCtrl)
+      break
+
+    case UPDATE_SELECTED_FEATURE:
+      set(state, 'selectedFeature', action.selectedFeature)
+      break
 
     default:
-      return state;
+      return state
   }
+  return state
 };

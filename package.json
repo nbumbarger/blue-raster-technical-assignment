@@ -98,6 +98,7 @@
     "whatwg-fetch": "1.0.0"
   },
   "dependencies": {
+    "object-path": "^0.11.4",
     "prop-types": "^15.5.10",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
