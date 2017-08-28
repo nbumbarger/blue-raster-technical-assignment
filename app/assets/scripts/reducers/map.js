@@ -3,7 +3,7 @@ import EsriMap from 'esri/Map';
 import { set } from 'object-path';
 import _ from 'lodash';
 
-import { mapDefaults } from '../constants';
+import { mapDefaults, layerQueryFields } from '../constants';
 import { dcBoundary, parks, schools, police } from '../utils/layers';
 
 import {
@@ -62,6 +62,25 @@ export default (state = initialState, action) => {
       break;
 
     case UPDATE_ACTIVE_FILTERS:
+      const { filters, category } = action;
+      const queryForGeometries = (category) => {
+        const query = state.layers[category].createQuery();
+        return state.layers[category].queryFeatures(query)
+          .then((res) => res.features.map((feature) => feature.geometry));
+      };
+      if (action.type) {
+        const setDefinitionExpression = (newValues, category, queryField) => {
+          newValues = newValues[category];
+          const query = newValues.map((val) => `${queryField} = '${val}' OR `).join('').slice(0, -3);
+          state.layers[category].definitionExpression = query;
+          if (!state.layers[category].visible) {
+            state.layers[category].visible = true;
+          }
+          return queryForGeometries(category);
+        };
+        setDefinitionExpression(filters, category, layerQueryFields[category]);
+      }
+
       set(state, 'activeFilters', action.filters);
       break;
 

@@ -15,7 +15,7 @@ export const FilterControl = (props) => {
       : activeFilters[category].concat(filter);
 
     activeFilters[category] = newFilters;
-    dispatch(updateActiveFilters(activeFilters));
+    dispatch(updateActiveFilters(activeFilters, category));
   };
 
   return (

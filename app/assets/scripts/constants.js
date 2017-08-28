@@ -7,3 +7,7 @@ export const mapDefaults = {
   center: [-77.04, 38.91],
   zoom: 11
 };
+
+export const layerQueryFields = {
+  parks: 'USE_TYPE', schools: 'FACUSE'
+};
