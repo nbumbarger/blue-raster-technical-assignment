@@ -3,10 +3,9 @@
   top: 4.5rem;
   right: 1rem;
   width: 15rem;
-  height: 30rem;
-  z-index: 1;
   background-color: #ffffff;
   border: 1px solid #333333;
+  z-index: 1;
   h2 {
     padding: 0.4rem;
     background-color: #4c4c4c;
@@ -16,5 +15,26 @@
     letter-spacing: 0.05rem;
     color: #ffffff;
     line-height: 1.2rem;
+    margin-bottom: 0.75rem;
+  }
+  .filters-inner {
+    padding: 0 1rem 0.75rem 1rem;
+  }
+  h3 {
+    margin: 0 0 0.1rem;
+    font-size: 0.9rem;
+    color: #00ccff;
+    text-transform: capitalize;
+  }
+  input[type=checkbox] {
+    margin: 0.2rem 0.5rem 0 0.3rem;
+    width: 15px;
+    height: 15px;
+  }
+  label {
+    text-transform: lowercase;
+  }
+  .filters__check-group {
+    font-size: 0.8rem;
   }
 }
