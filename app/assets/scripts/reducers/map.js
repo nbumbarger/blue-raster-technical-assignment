@@ -9,6 +9,7 @@ import { dcBoundary, parks, schools, police } from '../utils/layers';
 import {
   CREATE_MAP,
   POPULATE_FILTERS,
+  UPDATE_ACTIVE_FILTERS,
   UPDATE_SELECTED_FEATURE } from '../actions';
 
 export const initialState = {
@@ -18,6 +19,7 @@ export const initialState = {
     schools: schools.layer,
     police: police.layer
   },
+  activeFilters: {},
   selectedFeature: {}
 };
 
@@ -55,12 +57,17 @@ export default (state = initialState, action) => {
           schools: _.uniq(schoolsRes.features.map((feature) => feature.attributes.FACUSE))
         };
         set(state, 'filters', filters);
+        set(state, 'activeFilters', filters);
       });
+      break
+
+    case UPDATE_ACTIVE_FILTERS:
+      set(state, 'activeFilters', action.filters);
       break
 
     case UPDATE_SELECTED_FEATURE:
       set(state, 'selectedFeature', action.selectedFeature);
-      break;
+      break
 
     default:
       return state;
