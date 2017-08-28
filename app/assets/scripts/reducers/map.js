@@ -3,7 +3,7 @@ import EsriMap from 'esri/Map';
 import { set } from 'object-path';
 import _ from 'lodash';
 
-import { mapDefaults } from '../constants';
+import { mapDefaults, layerQueryFields } from '../constants';
 import { dcBoundary, parks, schools, police } from '../utils/layers';
 
 import {
@@ -62,6 +62,7 @@ export default (state = initialState, action) => {
       break;
 
     case UPDATE_ACTIVE_FILTERS:
+      const { filters, category } = action;
       const queryForGeometries = (category) => {
         const query = state.layers[category].createQuery();
         return state.layers[category].queryFeatures(query)
@@ -77,8 +78,7 @@ export default (state = initialState, action) => {
           }
           return queryForGeometries(category);
         };
-        const queryField = {parks: 'USE_TYPE', schools: 'FACUSE'}[action.category];
-        setDefinitionExpression(action.filters, action.category, queryField);
+        setDefinitionExpression(filters, category, layerQueryFields[category]);
       }
 
       set(state, 'activeFilters', action.filters);
