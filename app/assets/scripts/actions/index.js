@@ -16,10 +16,11 @@ export const populateFilters = () => {
   };
 };
 
-export const updateActiveFilters = (filters) => {
+export const updateActiveFilters = (filters, category) => {
   return {
     type: 'UPDATE_ACTIVE_FILTERS',
-    filters
+    filters,
+    category
   };
 };
 

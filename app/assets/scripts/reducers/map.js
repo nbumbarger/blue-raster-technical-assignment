@@ -62,6 +62,25 @@ export default (state = initialState, action) => {
       break;
 
     case UPDATE_ACTIVE_FILTERS:
+      const queryForGeometries = (category) => {
+        const query = state.layers[category].createQuery();
+        return state.layers[category].queryFeatures(query)
+          .then((res) => res.features.map((feature) => feature.geometry));
+      };
+      if (action.type) {
+        const setDefinitionExpression = (newValues, category, queryField) => {
+          newValues = newValues[category];
+          const query = newValues.map((val) => `${queryField} = '${val}' OR `).join('').slice(0, -3);
+          state.layers[category].definitionExpression = query;
+          if (!state.layers[category].visible) {
+            state.layers[category].visible = true;
+          }
+          return queryForGeometries(category);
+        };
+        const queryField = {parks: 'USE_TYPE', schools: 'FACUSE'}[action.category];
+        setDefinitionExpression(action.filters, action.category, queryField);
+      }
+
       set(state, 'activeFilters', action.filters);
       break;
 
