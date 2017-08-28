@@ -21,8 +21,8 @@ export class Home extends Component {
     mapCtrl.on('click', (event) => {
       mapCtrl.hitTest(event)
       .then((response) => {
-        dispatch(updateSelectedFeature(response.results[0].graphic))
-      })
+        dispatch(updateSelectedFeature(response.results[0].graphic));
+      });
     });
   }
 

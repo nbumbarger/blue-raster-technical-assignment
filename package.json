@@ -46,7 +46,12 @@
     ]
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": "react-app",
+    "rules": {
+      "semi": [2, "always"],
+      "no-extra-semi": 2,
+      "semi-spacing": [2, { "before": false, "after": true }]
+    }
   },
   "devDependencies": {
     "autoprefixer": "6.4.1",

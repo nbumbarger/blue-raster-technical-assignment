@@ -10,7 +10,7 @@ const polygonFactory = ({url, outFields, symbol, id}) => {
       symbol: new SimpleFillSymbol(symbol)
     })
   });
-}
+};
 
 const iconPointFactory = ({url, outFields, symbol, id}) => {
   return new FeatureLayer({
@@ -19,7 +19,7 @@ const iconPointFactory = ({url, outFields, symbol, id}) => {
       symbol: new TextSymbol(symbol)
     })
   });
-}
+};
 
 export const dcBoundary = {
   name: 'Washington DC Boundary',
@@ -36,13 +36,13 @@ export const dcBoundary = {
       }
     }
   })
-}
+};
 
 export const crime = {
   name: 'Crime',
   url: 'https://maps2.dcgis.dc.gov/dcgis/rest/services/DCGIS_DATA/Recreation_WebMercator/MapServer/9/query?outFields=*&where=1%3D1',
   attributes: ['REPORT_DAT', 'SHIFT', 'OFFENSE', 'USE_TYPE']
-}
+};
 
 export const parks = {
   name: 'Parks and Recreation Areas',
@@ -59,7 +59,7 @@ export const parks = {
       }
     }
   })
-}
+};
 
 export const schools = {
   name: 'Public Schools',
@@ -76,7 +76,7 @@ export const schools = {
       }
     }
   })
-}
+};
 
 export const police = {
   name: 'Police Stations',
@@ -93,4 +93,4 @@ export const police = {
       }
     }
   })
-}
+};

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 
-import { updateActiveFilters } from '../actions'
+import { updateActiveFilters } from '../actions';
 
 export const FilterControl = (props) => {
 
@@ -16,7 +16,7 @@ export const FilterControl = (props) => {
 
     activeFilters[category] = newFilters;
     dispatch(updateActiveFilters(activeFilters));
-  }
+  };
 
   return (
     <section className='filter-control'>
@@ -38,10 +38,10 @@ export const FilterControl = (props) => {
                     onChange={handleFilterSelection.bind(this, filterChecked, filter, category)} />
                   <label>{filter}</label>
                 </div>
-              )
+              );
             })}
           </div>
-        )
+        );
       })}
     </section>
   );
@@ -51,6 +51,7 @@ FilterControl.propTypes = {
   filters: PropTypes.object,
   activeFilters: PropTypes.object,
   dispatch: PropTypes.func
-}
+};
+
 
 export default FilterControl;

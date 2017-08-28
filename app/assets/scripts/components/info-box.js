@@ -10,14 +10,14 @@ export const InfoBox = (props) => {
       <h2 className={type}>{type} Feature</h2>
       <table><tbody>
       {_.map(attributes, (val, key) => {
-        row++
+        row++;
         if (key !== 'OBJECTID') {
           return (
             <tr key={`row-${key}`} className={row % 2 ? '' : 'alt'}>
               <td>{key}</td>
               <td>{val}</td>
             </tr>
-          )
+          );
         }})}
       </tbody></table>
     </section>

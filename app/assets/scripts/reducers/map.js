@@ -1,7 +1,7 @@
 import MapView from 'esri/views/MapView';
 import EsriMap from 'esri/Map';
 import { set } from 'object-path';
-import _ from 'lodash'
+import _ from 'lodash';
 
 import { mapDefaults } from '../constants';
 import { dcBoundary, parks, schools, police } from '../utils/layers';
@@ -41,9 +41,9 @@ export default (state = initialState, action) => {
         }),
         center: mapDefaults.center,
         zoom: mapDefaults.zoom
-      })
-      set(state, 'mapCtrl', mapCtrl)
-      break
+      });
+      set(state, 'mapCtrl', mapCtrl);
+      break;
 
     case POPULATE_FILTERS:
       const { parks, schools } = state.layers;
@@ -59,19 +59,19 @@ export default (state = initialState, action) => {
         set(state, 'filters', filters);
         set(state, 'activeFilters', filters);
       });
-      break
+      break;
 
     case UPDATE_ACTIVE_FILTERS:
       set(state, 'activeFilters', action.filters);
-      break
+      break;
 
     case UPDATE_SELECTED_FEATURE:
       set(state, 'selectedFeature', action.selectedFeature);
-      break
+      break;
 
     default:
       return state;
-  };
+  }
 
   return state;
 };
